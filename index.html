@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>VJ génératif — v1</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- HUD en DOM et non dessiné dans le canvas (cf. IMPLEMENTATION.MD §9) :
+       le masquer garantit un output projeté strictement propre.
+       Les lignes sont construites par hud.js, pas écrites ici. -->
+  <div id="hud">
+    <div id="hud-rows"></div>
+    <div id="hud-hint">
+      1 tap tempo &nbsp;·&nbsp; 2 palette &nbsp;·&nbsp; 3 strobe &nbsp;·&nbsp;
+      4 source audio &nbsp;·&nbsp; 5 taille &nbsp;·&nbsp; 6 animation &nbsp;·&nbsp;
+      7 visuel &nbsp;·&nbsp; 8 complexité &nbsp;·&nbsp; 9 symétrie &nbsp;·&nbsp;
+      0 freeze &nbsp;·&nbsp; B noir &nbsp;·&nbsp; A audio &nbsp;·&nbsp;
+      S sensibilité &nbsp;·&nbsp;
+      E effet &nbsp;·&nbsp; R rotation &nbsp;·&nbsp; F plein écran &nbsp;·&nbsp;
+      H interface
+    </div>
+  </div>
+
+  <!-- L'ordre de chargement tient lieu de liste de dépendances (cf. §2). -->
+  <script src="lib/p5.min.js"></script>
+  <script src="lib/p5.sound.min.js"></script>
+
+  <script src="src/state.js"></script>
+  <script src="src/tempo.js"></script>
+  <script src="src/audio.js"></script>
+
+  <!-- Les registres avant leurs modules : chaque module s'y enregistre au
+       chargement. L'ordre des modules détermine l'ordre de cycle au clavier. -->
+  <script src="src/generators/_registry.js"></script>
+  <script src="src/generators/spiral.js"></script>
+  <script src="src/generators/circles.js"></script>
+  <script src="src/generators/sierpinski.js"></script>
+  <script src="src/generators/star.js"></script>
+  <script src="src/generators/rose.js"></script>
+  <script src="src/generators/lissajous.js"></script>
+  <script src="src/generators/wave.js"></script>
+  <script src="src/generators/grid.js"></script>
+
+  <script src="src/animations/_registry.js"></script>
+  <script src="src/animations/rotate.js"></script>
+  <script src="src/animations/pulse.js"></script>
+  <script src="src/animations/orbit.js"></script>
+  <script src="src/animations/expand.js"></script>
+  <script src="src/animations/swing.js"></script>
+  <script src="src/animations/tumble.js"></script>
+  <script src="src/animations/explode.js"></script>
+  <script src="src/animations/shake.js"></script>
+
+  <script src="src/effects/_registry.js"></script>
+  <script src="src/effects/normal.js"></script>
+  <script src="src/effects/trail.js"></script>
+  <script src="src/effects/kaleido.js"></script>
+  <script src="src/effects/glitch.js"></script>
+  <script src="src/effects/ripple.js"></script>
+  <script src="src/effects/pixel.js"></script>
+  <script src="src/effects/invert.js"></script>
+  <script src="src/effects/dither.js"></script>
+
+  <script src="src/renderer.js"></script>
+  <script src="src/hud.js"></script>
+  <script src="src/controls.js"></script>
+  <script src="src/main.js"></script>
+
+</body>
+</html>
